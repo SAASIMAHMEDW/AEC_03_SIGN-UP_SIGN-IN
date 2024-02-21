@@ -19,6 +19,7 @@ public class SignInActivity extends AppCompatActivity {
 
     String USERNAME,PASSWORD;
     String SUP_USERNAME,SUP_PASSWORD;
+    int Attempt = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,13 @@ public class SignInActivity extends AppCompatActivity {
                     startActivity(home);
                     finishAffinity();
                 }else {
+                    if (Attempt==0){
+                        Toast.makeText(SignInActivity.this, "Limit Exceeds", Toast.LENGTH_SHORT).show();
+                        signin_email.setEnabled(false);
+                        signin_password.setEnabled(false);
+                        signin_btn.setClickable(false);
+                    }
+                    Attempt =- 1;
                     Toast.makeText(SignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
